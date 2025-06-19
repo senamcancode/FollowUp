@@ -24,15 +24,3 @@ for sentence, embedding in stored_embeddings.items():
     print(f"sentence: {sentences[sentence]}")
     print(f"embedding: {embedding}")
 
-
-
-
-#     sentence_index = sentences.index(sentence) 
-#     stored_embeddings.update({sentence:embedding})
-
-# print(stored_embeddings)
-
-#for each sentence in sentences 
-# model.encode 
-#store the sentence as a key in a dictionary 
-# store the answer in a dictionary 
