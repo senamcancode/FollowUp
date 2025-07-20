@@ -1,6 +1,5 @@
 # FollowUp
-FollowUp is an AI-powered personal networking assistant that helps you manage connections, schedule follow-ups, and draft personalized messages. It uses vector memory for rich context and integrates LinkedIn data, featuring a React chat interface and FastAPI backend.
-
+FollowUp is your AI-powered networking sidekick — built in Python, backed by an MCP-hosted agent, and designed to help you stay effortlessly connected. It automates friendly follow-up reminders, crafts personalized messages, and pulls in rich context from LinkedIn and a PostgreSQL database. With a sleek React chat interface, FollowUp makes nurturing your network feel refreshingly human.
 
 ## 📋 To-Do
 
