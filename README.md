@@ -5,7 +5,7 @@ FollowUp is your AI-powered networking sidekick — built in Python, backed by a
 ## 📋 To-Do
 
 - [] Unit testing for db connection 
-- [] create `contact_manager` class/module
+- [] Create `contact_manager` class/module
 - [] Implement `create_contract` method 
 - [] Add UUID generation for conatactid
 - [] Design and build basic MCP tool schema for `create_contact` 
