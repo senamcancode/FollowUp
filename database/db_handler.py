@@ -1,6 +1,6 @@
 from typing import Optional
 import os
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 import logging
 
 
@@ -27,7 +27,7 @@ class DatabaseConnection:
 
     def __new__(cls):
         
-        load_dotenv(find_dotenv())
+        load_dotenv()
 
         if cls._instance is None:
             cls._instance = super().__new__(cls)
@@ -82,8 +82,6 @@ class DatabaseConnection:
         self.cursor.close()
 
         self.logger.info("Successful closure of database connection")
-
-
 
 
 # https://softwareengineering.stackexchange.com/questions/200522/how-to-deal-with-database-connections-in-a-python-library-module       # 
