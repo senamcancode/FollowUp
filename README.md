@@ -4,8 +4,10 @@ FollowUp is your AI-powered networking sidekick — built in Python, backed by a
 
 ## 📋 To-Do
 
-- [x] Set up PostgreSQL database
-- [x] Create `Contacts` table with constraints
-- [x] Build `db_handler` class
-- [] Seed initial test contacts
-- [x] Create `.env` file and load configs
+- [] create `contact_manager` class/module
+- [] Implement `create_contract` method 
+- [] Add UUID generation for conatactid
+- [] Unit testing for db connection 
+- [] Design and build basic MCP tool schema for `create_contact` 
+- [] Draft agent prompt/instructions
+
