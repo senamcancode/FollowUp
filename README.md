@@ -11,3 +11,5 @@ FollowUp is your AI-powered networking sidekick — built in Python, backed by a
 - [] Design and build basic MCP tool schema for `create_contact` 
 - [] Draft agent prompt/instructions
 
+PyTest Mocker video:
+https://www.youtube.com/watch?v=zHgXRlUBA5A

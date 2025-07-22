@@ -75,7 +75,7 @@ class DatabaseConnection:
         """
         Close the connection to the database. 
         """
-        self.logger.info("Closing the database connection")
+        self.logger.info("...Closing the database connection")
 
 
         self.connection.close()
