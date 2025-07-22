@@ -1,6 +1,7 @@
 from typing import Optional
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
+import logging
 
 
 import psycopg2
@@ -15,14 +16,18 @@ class DatabaseConnection:
     _connection: Optional[PGConnection] = None
     _cursor: Optional[PGCursor]
 
-    db_name = os.getenv("DB_NAME")
-    db_user = os.getenv("DB_USER")
-    db_password = os.getenv("DB_PASSWORD")
-    db_port = os.getenv("DB_PORT")
-    db_host = os.getenv("DB_HOST")
+    db_name = os.getenv("NAME")
+    db_user = os.getenv("USER")
+    db_password = os.getenv("PASSWORD")
+    db_port = os.getenv("PORT")
+    db_host = os.getenv("HOST")
+    
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
 
     def __new__(cls):
-        load_dotenv()
+        
+        load_dotenv(find_dotenv())
 
         if cls._instance is None:
             cls._instance = super().__new__(cls)
@@ -33,7 +38,10 @@ class DatabaseConnection:
                 port=cls.db_port,
                 host=cls.db_host
             )
-            cls._instance._cursor = cls._connection.cursor()
+            
+            cls.logger.info(f"...Connecting to database {cls.db_name}")
+
+            cls._instance._cursor = cls._instance._connection.cursor()
         return cls._instance
     # The above can be changed to a connection pool when you have multiple users
     
@@ -46,13 +54,14 @@ class DatabaseConnection:
 
 
     def query(self, query: str, params: Optional[tuple] = None) -> Optional[list]:
+
         try:
             if params:
                 self.cursor.execute(query, params)
             else:
                 self.cursor.execute(query)
         
-            if query.strip().lower().startwith("select"):
+            if query.strip().lower().startswith("select"):
                 db_rows = self.cursor.fetchall()
                 return db_rows
             else:
@@ -66,8 +75,14 @@ class DatabaseConnection:
         """
         Close the connection to the database. 
         """
+        self.logger.info("Closing the database connection")
+
+
         self.connection.close()
         self.cursor.close()
+
+        self.logger.info("Successful closure of database connection")
+
 
 
 
