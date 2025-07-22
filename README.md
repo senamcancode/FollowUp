@@ -6,6 +6,6 @@ FollowUp is your AI-powered networking sidekick — built in Python, backed by a
 
 - [x] Set up PostgreSQL database
 - [x] Create `Contacts` table with constraints
-- [ ] Build `db_handler` class
-- [ ] Seed initial test contacts
-- [ ] Create `.env` file and load configs
+- [x] Build `db_handler` class
+- [] Seed initial test contacts
+- [x] Create `.env` file and load configs
