@@ -1,9 +1,13 @@
 import uuid
 
+from db_connection import DatabaseConnection
 from sqlalchemy import Column, String, Interval, UUID, Text, CheckConstraint, Date
 from sqlalchemy.ext.declarative import declarative_base
 
+db = DatabaseConnection.create()
+engine = db.engine
 Base = declarative_base()
+
 
 class Contact(Base):
     __tablename__ = "contacts"
@@ -21,7 +25,7 @@ class Contact(Base):
 
     __table_args__ = (
         CheckConstraint(
-            '("ContactEmail" IS NOT NULL OR "ContactMessageInfo" IS NOT NULL ',
+            '("ContactEmail" IS NOT NULL OR "ContactMessageInfo" IS NOT NULL)',
             name='contact_email_or_message_required'
         )
     )
@@ -38,3 +42,5 @@ class Contact(Base):
             f"last_meeting_talking_points={self.last_meeting_talking_points}, "
             f"meeting_frequency={self.meeting_frequency})>"
         )
+
+# Base.metadata.create_all(engine)

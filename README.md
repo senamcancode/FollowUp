@@ -4,8 +4,7 @@ FollowUp is your AI-powered networking sidekick — built in Python, backed by a
 
 ## 📋 To-Do
 
-- [] Unit testing for db connection 
-- [] Spin up docker container for db queries - db integration testing
+- [x] Unit testing for db connection 
 - [] Create `contact_manager` class/module
 - [] Implement `create_contract` method 
 - [] Add UUID generation for conatactid
@@ -15,3 +14,5 @@ FollowUp is your AI-powered networking sidekick — built in Python, backed by a
 PyTest Mocker video:
 https://www.youtube.com/watch?v=zHgXRlUBA5A
 https://medium.com/swlh/python-testing-with-a-mock-database-sql-68f676562461
+
+https://gist.github.com/emmanuelnk/db62507184125ddfe24844bb552fc26d

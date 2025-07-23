@@ -1,7 +1,6 @@
 # created by virtualenv automatically
 .DS_Store
 *.pyc
-test_db.py
 .idea/
 .venv/
 .env
