@@ -13,7 +13,9 @@ class TestDatabaseConnection(unittest.TestCase):
         self.assertEqual(db_name, expected_name)    
 
     def test_engine_connection(self):
-        # Test if engine connects without errors
+        '''
+        Test if engine connects without errors
+        '''
         try:
             with self.db.engine.connect() as conn:
                 self.assertTrue(conn.closed == False)
@@ -21,7 +23,9 @@ class TestDatabaseConnection(unittest.TestCase):
             self.fail(f"Engine connection failed: {e}")
 
     def test_get_session(self):
-        # Test if get_session returns a valid Session
+        '''
+        Test if get_session returns a valid Session
+        '''
         session = None
         try:
             session = self.db.get_session()
