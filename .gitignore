@@ -5,3 +5,4 @@
 .venv/
 .env
 requirements.txt
+.vscode
