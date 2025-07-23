@@ -14,5 +14,4 @@ FollowUp is your AI-powered networking sidekick — built in Python, backed by a
 PyTest Mocker video:
 https://www.youtube.com/watch?v=zHgXRlUBA5A
 https://medium.com/swlh/python-testing-with-a-mock-database-sql-68f676562461
-
 https://gist.github.com/emmanuelnk/db62507184125ddfe24844bb552fc26d
