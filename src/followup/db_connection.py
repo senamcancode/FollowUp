@@ -1,8 +1,9 @@
-from typing import Optional
+from typing import Optional, ClassVar, Type
 import os
 from dotenv import load_dotenv
 import logging
 import sqlalchemy
+from sqlalchemy.engine import Engine
 from sqlalchemy.orm import sessionmaker, Session
 
 
@@ -10,13 +11,12 @@ class DatabaseConnection:
     """
     Class for for managing database connections.
     """
-    __instance = None
+    __instance : ClassVar[Optional["DatabaseConnection"]] = None
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
 
 
-    def __init__(self):
-
+    def __init__(self) -> None:
         if DatabaseConnection.__instance is not None: 
             raise Exception(
                 "This class is a singleton, use DatabaseConnection.create()")
@@ -26,13 +26,13 @@ class DatabaseConnection:
         self.SessionLocal = sessionmaker(bind=self.engine, autoflush=False, autocommit=False)
 
     @classmethod
-    def create(cls):
+    def create(cls: Type["DatabaseConnection"]) -> "DatabaseConnection":
         if cls.__instance is None:
             cls.__instance = cls()
             cls.logger.info(f"Created database connection for database {os.getenv('NAME')}")
         return cls.__instance        
     
-    def create_engine(self):
+    def create_engine(self) -> Engine:
         """Fetch credentials from environment variables and create database connection"""
         load_dotenv() 
 
@@ -56,7 +56,7 @@ class DatabaseConnection:
             self.logger.error("Failed to create session: %s", e)
             raise
     
-    def close(self):
+    def close(self) -> None:
         self.engine.dispose()
         self.logger.info("Database engine disposed")    
 

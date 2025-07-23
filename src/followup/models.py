@@ -43,4 +43,4 @@ class Contact(Base):
             f"meeting_frequency={self.meeting_frequency})>"
         )
 
-# Base.metadata.create_all(engine)
+Base.metadata.create_all(engine)
