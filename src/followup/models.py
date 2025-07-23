@@ -21,7 +21,7 @@ class Contact(Base):
 
     __table_args__ = (
         CheckConstraint(
-            '("Contact email" IS NOT NULL OR "ContactMessageInfo" IS NOT NULL ',
+            '("ContactEmail" IS NOT NULL OR "ContactMessageInfo" IS NOT NULL ',
             name='contact_email_or_message_required'
         )
     )
