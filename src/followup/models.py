@@ -8,7 +8,7 @@ db = DatabaseConnection.create()
 engine = db.engine
 Base = declarative_base()
 
-
+@dataclass
 class Contact(Base):
     __tablename__ = "contacts"
 

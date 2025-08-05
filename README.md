@@ -1,5 +1,5 @@
 # FollowUp
-FollowUp is your AI-powered networking sidekick — built in Python, backed by an MCP-hosted agent, and designed to help you stay effortlessly connected. It automates friendly follow-up reminders, crafts personalized messages, and pulls in rich context from LinkedIn and a PostgreSQL database. With a sleek React chat interface, FollowUp makes nurturing your network feel refreshingly human.
+FollowUp is your AI-powered networking assistant — built in Python, backed by an MCP-hosted agent, and designed to help you stay effortlessly connected. It automates friendly follow-up reminders, crafts personalized messages, and pulls in rich context from a PostgreSQL database and integrates with your Google Calendar. With a sleek React chat interface, FollowUp makes nurturing your network feel refreshingly human.
 
 
 ## 📋 To-Do
@@ -15,3 +15,6 @@ PyTest Mocker video:
 https://www.youtube.com/watch?v=zHgXRlUBA5A
 https://medium.com/swlh/python-testing-with-a-mock-database-sql-68f676562461
 https://gist.github.com/emmanuelnk/db62507184125ddfe24844bb552fc26d
+https://www.speakeasy.com/mcp
+https://www.youtube.com/watch?v=WFvugLf_760
+https://github.com/CodingWithLewis/ReceiptPrinterAgent/blob/main/tools.py

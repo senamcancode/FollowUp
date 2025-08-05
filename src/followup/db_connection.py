@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker, Session
 
 class DatabaseConnection:
     """
-    Class for for managing database connections.
+    Class for managing database connections.
     """
     __instance : ClassVar[Optional["DatabaseConnection"]] = None
     logging.basicConfig(level=logging.INFO)

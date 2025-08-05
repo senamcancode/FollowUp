@@ -6,3 +6,5 @@
 .env
 requirements.txt
 .vscode
+poetry.lock
+pyproject.toml
