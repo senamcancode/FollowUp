@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 @pytest.fixture(autouse=True)
 def set_up_test_db(monkeypatch):
-    monkeypatch.setenv("USER", "testing_user")
+    monkeypatch.setenv("USER", "test_user")
     monkeypatch.setenv("PASSWORD", "test_pwd")
     monkeypatch.setenv("NAME", "test_name")
     monkeypatch.setenv("HOST", "localhost")
@@ -44,7 +44,7 @@ def test_session() -> None:
     """
     Test that a session can be created from the connection.
     """
-    
+
     pass
 
 
