@@ -1,6 +1,5 @@
 from src.followup.db_connection import DatabaseConnection
 import pytest
-import os
 from dotenv import load_dotenv
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.engine import Engine 
@@ -20,6 +19,21 @@ def set_up_test_db(monkeypatch):
     monkeypatch.setenv("HOST", "localhost")
     monkeypatch.setenv("PORT", "5432") 
 
+
+def test_missing_environmental_variables_raise_error(monkeypatch) -> None:
+    monkeypatch.setattr("src.followup.db_connection.load_dotenv", lambda: None)
+
+    monkeypatch.delenv("USER", raising=False)    
+    monkeypatch.delenv("PASSWORD", raising=False) 
+    monkeypatch.delenv("NAME", raising=False) 
+    monkeypatch.delenv("HOST", raising=False) 
+    monkeypatch.delenv("PORT", raising=False) 
+
+
+    DatabaseConnection._DatabaseConnection__instance = None
+
+    with pytest.raises(ValueError):
+        DatabaseConnection() 
 
 def test_db_singleton(set_up_test_db) -> None:
     """
@@ -60,22 +74,5 @@ def test_close_function_generates_logs_message(set_up_test_db, caplog) -> None:
         db_instance = DatabaseConnection.create()
         db_instance.close()
     assert("Database engine disposed" in caplog.text)    
-
-def test_missing_environmental_variables_raise_error(monkeypatch) -> None:
-    """
-    Test that missing required environment variables raises an appropriate error.
-    """
-    DatabaseConnection._DatabaseConnection__instance = None
-
-    monkeypatch.delenv("USER", raising=False)
-    monkeypatch.delenv("PASSWORD", raising=False)
-    monkeypatch.delenv("NAME", raising=False)
-    monkeypatch.delenv("HOST", raising=False)
-    monkeypatch.delenv("PORT", raising=False) 
-
-    with pytest.raises(Exception) as e:
-        db_instance = DatabaseConnection.create()
-        db_engine = db_instance.create_engine()
-
 
 
