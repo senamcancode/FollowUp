@@ -2,7 +2,9 @@ from src.followup.db_connection import DatabaseConnection
 import pytest
 import os
 from dotenv import load_dotenv
-
+from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.engine import Engine 
+import logging 
 
 # Test that the singleton pattern works (only one instance is created).
 # Test that the database engine is created successfully with valid environment variables.
@@ -37,15 +39,32 @@ def test_create_engine() -> None:
     engine = db_instance.engine
     
     assert engine is not None 
-    from sqlalchemy.engine import Engine 
     assert isinstance(engine, Engine)
 
-def test_session() -> None:
+def test_session_created_from_db_connection() -> None:
     """
     Test that a session can be created from the connection.
     """
+    db_instance = DatabaseConnection.create()
+    db_session = db_instance.get_session()
 
-    pass
+    assert db_session is not None 
+    assert isinstance(db_session, Session)
 
+
+def test_close_function_generates_logs_message(caplog) -> None:
+    """
+    Test that the close() method generates a log message.
+    """
+    with caplog.at_level(logging.INFO):
+        db_instance = DatabaseConnection.create()
+        db_instance.close()
+    assert("Database engine disposed" in caplog.text)    
+
+def test_missing_environmental_variables_raise_error() -> None:
+    """
+    Test that missing required environment variables raises an appropriate error.
+    """
+    
 
 
