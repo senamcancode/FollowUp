@@ -21,6 +21,9 @@ def set_up_test_db(monkeypatch):
 
 
 def test_missing_environmental_variables_raise_error(monkeypatch) -> None:
+    """
+    Test that missing environmental variables raise a Value Error
+    """
     monkeypatch.setattr("src.followup.db_connection.load_dotenv", lambda: None)
 
     monkeypatch.delenv("USER", raising=False)    
