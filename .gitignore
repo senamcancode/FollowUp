@@ -8,3 +8,4 @@ requirements.txt
 .vscode
 poetry.lock
 pyproject.toml
+learnings.txt

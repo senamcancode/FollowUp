@@ -12,7 +12,7 @@ import logging
 # Test that closing the engine logs the correct message.
 # Test that missing required environment variables raises an appropriate error.
 
-@pytest.fixture(autouse=True)
+@pytest.fixture()
 def set_up_test_db(monkeypatch):
     monkeypatch.setenv("USER", "test_user")
     monkeypatch.setenv("PASSWORD", "test_pwd")
@@ -21,7 +21,7 @@ def set_up_test_db(monkeypatch):
     monkeypatch.setenv("PORT", "5432") 
 
 
-def test_db_singleton() -> None:
+def test_db_singleton(set_up_test_db) -> None:
     """
     A unit test to check that the database instance is a singleton.
     """
@@ -31,7 +31,7 @@ def test_db_singleton() -> None:
     assert db_instance is not None
     assert db_instance == second_db_instance
 
-def test_create_engine() -> None:
+def test_create_engine(set_up_test_db) -> None:
     """
     Test that the database engine is created successfully.
     """
@@ -41,7 +41,7 @@ def test_create_engine() -> None:
     assert engine is not None 
     assert isinstance(engine, Engine)
 
-def test_session_created_from_db_connection() -> None:
+def test_session_created_from_db_connection(set_up_test_db) -> None:
     """
     Test that a session can be created from the connection.
     """
@@ -52,7 +52,7 @@ def test_session_created_from_db_connection() -> None:
     assert isinstance(db_session, Session)
 
 
-def test_close_function_generates_logs_message(caplog) -> None:
+def test_close_function_generates_logs_message(set_up_test_db, caplog) -> None:
     """
     Test that the close() method generates a log message.
     """
@@ -61,10 +61,21 @@ def test_close_function_generates_logs_message(caplog) -> None:
         db_instance.close()
     assert("Database engine disposed" in caplog.text)    
 
-def test_missing_environmental_variables_raise_error() -> None:
+def test_missing_environmental_variables_raise_error(monkeypatch) -> None:
     """
     Test that missing required environment variables raises an appropriate error.
     """
-    
+    DatabaseConnection._DatabaseConnection__instance = None
+
+    monkeypatch.delenv("USER", raising=False)
+    monkeypatch.delenv("PASSWORD", raising=False)
+    monkeypatch.delenv("NAME", raising=False)
+    monkeypatch.delenv("HOST", raising=False)
+    monkeypatch.delenv("PORT", raising=False) 
+
+    with pytest.raises(Exception) as e:
+        db_instance = DatabaseConnection.create()
+        db_engine = db_instance.create_engine()
+
 
 
