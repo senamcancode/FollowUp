@@ -18,3 +18,7 @@ https://gist.github.com/emmanuelnk/db62507184125ddfe24844bb552fc26d
 https://www.speakeasy.com/mcp
 https://www.youtube.com/watch?v=WFvugLf_760
 https://github.com/CodingWithLewis/ReceiptPrinterAgent/blob/main/tools.py
+
+
+contact manager docs: 
+https://medium.com/@shubhkarmanrathore/mastering-crud-operations-with-sqlalchemy-a-comprehensive-guide-a05cf70e5dea

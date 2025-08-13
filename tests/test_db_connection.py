@@ -13,11 +13,14 @@ import logging
 
 @pytest.fixture()
 def set_up_test_db(monkeypatch):
-    monkeypatch.setenv("USER", "test_user")
-    monkeypatch.setenv("PASSWORD", "test_pwd")
-    monkeypatch.setenv("NAME", "test_name")
-    monkeypatch.setenv("HOST", "localhost")
-    monkeypatch.setenv("PORT", "5432") 
+    db_credentials_dict = {"USER":"test_user", 
+                           "PASSWORD":"test_pwd", 
+                           "NAME":"test_name", 
+                           "HOST":"localhost", 
+                           "PORT":"5432"}
+    
+    for var, value in db_credentials_dict.items():
+        monkeypatch.setenv(var, value)
 
 
 def test_missing_environmental_variables_raise_error(monkeypatch) -> None:
@@ -26,12 +29,9 @@ def test_missing_environmental_variables_raise_error(monkeypatch) -> None:
     """
     monkeypatch.setattr("src.followup.db_connection.load_dotenv", lambda: None)
 
-    monkeypatch.delenv("USER", raising=False)    
-    monkeypatch.delenv("PASSWORD", raising=False) 
-    monkeypatch.delenv("NAME", raising=False) 
-    monkeypatch.delenv("HOST", raising=False) 
-    monkeypatch.delenv("PORT", raising=False) 
-
+    db_credentials_list = ["USER", "PASSWORD", "NAME", "HOST", "PORT"]
+    for var in db_credentials_list:
+        monkeypatch.delenv(var, raising=False)
 
     DatabaseConnection._DatabaseConnection__instance = None
 
