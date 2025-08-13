@@ -5,11 +5,6 @@ from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.engine import Engine 
 import logging 
 
-# Test that the singleton pattern works (only one instance is created).
-# Test that the database engine is created successfully with valid environment variables.
-# Test that a session can be created from the connection.
-# Test that closing the engine logs the correct message.
-# Test that missing required environment variables raises an appropriate error.
 
 @pytest.fixture()
 def set_up_test_db(monkeypatch):
