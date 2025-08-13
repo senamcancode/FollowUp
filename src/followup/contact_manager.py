@@ -1,4 +1,5 @@
 from followup.db_connection import DatabaseConnection
+from models import Contact, engine 
 
 
 class ContactManager: 
@@ -12,6 +13,9 @@ class ContactManager:
     """
 
     # create a new contact 
-    db = DatabaseConnection.create()
 
-    
+
+    # def createContact() -> Contact:
+
+    #     # new_contact = Contact(firstname=, last_name=, profession=, contact_quirks=, contact_email=, contact_message_info=, last_meeting_date=, last_meeting_talking_points=, meeting_frequency=)
+
