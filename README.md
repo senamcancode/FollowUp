@@ -5,7 +5,8 @@ FollowUp is your AI-powered networking assistant — built in Python, backed by 
 ## 📋 To-Do
 
 - [x] Unit testing for db connection 
-- [] Create `session_handler` class 
+- [x] Create `session_handler` class 
+- [] Implemnet session_handler methods 
 - [] Create `contact_manager` class/module
 - [] Implement `create_contract` method 
 - [] Add UUID generation for conatactid
