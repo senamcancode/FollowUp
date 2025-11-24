@@ -9,3 +9,4 @@ requirements.txt
 poetry.lock
 pyproject.toml
 learnings.txt
+secret_readme.md
